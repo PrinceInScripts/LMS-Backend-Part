@@ -15,13 +15,18 @@ const app=express()
 
 app.use(express.json())
 
-app.use(cors({
-    origin:[process.env.FRONTEND_URL],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials:true,
-    optionsSuccessStatus: 204,
+// app.use(cors({
+//     origin:[process.env.FRONTEND_URL],
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials:true,
+//     optionsSuccessStatus: 204,
 
-}))
+// }))
+
+app.use(cors({
+    origin: 'https://learning-blue.vercel.app',
+    credentials: true,
+}));
 
 app.use(cookieParser())
 
