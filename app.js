@@ -38,6 +38,9 @@ app.all('*',(req,res)=>{
     res.status(404).send('OOPS !! page not found')
 })
 
+app.get("/",(req,res)=>{
+    res.json("Hello")
+})
 app.use(errorMiddleware)
 
 export default app;
