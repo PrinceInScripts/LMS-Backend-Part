@@ -1,10 +1,15 @@
 {
-    "version": 2,
-    "name": "lms",
-    "builds": [
-       { "src": "app.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-       { "src": "/(.*)", "dest": "/" }
-    ]
+   "version": 2,
+   "builds": [
+     {
+       "src": "api/**/*.js",
+       "use": "@now/node"
+     }
+   ],
+   "routes": [
+     {
+       "src": "/api/(.*)",
+       "dest": "/api/$1"
+     }
+   ]
  }
