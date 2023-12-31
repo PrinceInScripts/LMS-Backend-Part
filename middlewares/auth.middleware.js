@@ -2,30 +2,7 @@ import AppError from "../utlis/appError.js"
 import jwt from 'jsonwebtoken'
 
 
-//++++++++++++++++++++isLoggedIn Method+++++++++++++++++++++++
-
-// const isLoggedIn = async function(req, res, next) {
-//     try {
-//         const { token } = req.cookies;
-
-//         if (!token) {
-//             return next(new AppError('Unauthenticated, please login', 401));
-//         }
-
-//         const tokenDetails = await jwt.verify(token, process.env.JWT_SECRET);
-
-//         if (!tokenDetails) {
-//             return next(new AppError('Token is not verified, please login', 401));
-//         }
-
-//         req.user = tokenDetails;
-
-//         next();
-//     } catch (error) {
-//         return next(new AppError('Internal Server Error', 500));
-//     }
-// };
-
+// ++++++++++++++++++++isLoggedIn Method+++++++++++++++++++++++
 
 const isLoggedIn = async function(req, res, next) {
     try {
@@ -35,9 +12,7 @@ const isLoggedIn = async function(req, res, next) {
             return next(new AppError('Unauthenticated, please login', 401));
         }
 
-        console.log('Token:', token);
         const tokenDetails = await jwt.verify(token, process.env.JWT_SECRET);
-        console.log('Token Details:', tokenDetails);
 
         if (!tokenDetails) {
             return next(new AppError('Token is not verified, please login', 401));
@@ -47,10 +22,12 @@ const isLoggedIn = async function(req, res, next) {
 
         next();
     } catch (error) {
-        // Handle the specific error (e.g., token expired, invalid signature)
-        return next(new AppError('Token verification failed, please login again', 401));
+        return next(new AppError('Internal Server Error', 500));
     }
 };
+
+
+
 
 //++++++++++++++++++++authorizedRoles Method+++++++++++++++++++++++
 
