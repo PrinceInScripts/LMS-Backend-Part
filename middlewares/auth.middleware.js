@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 
 const isLoggedIn = async function(req, res, next) {
     try {
-        const { token } = req.cookies;
+        const { token } = req.cookies ||req.cookies?.token || req.header("Authorization")?.replace("Bearer ","")
 
         if (!token) {
             return next(new AppError('Unauthenticated, please login', 401));
